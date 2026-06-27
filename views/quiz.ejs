@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= quiz.title %> | QuizMaster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h1>QuizMaster</h1>
+    <div>
+        <a href="/quizzes">Home</a>
+        <a href="/leaderboardPage">Leaderboard</a>
+    </div>
+</div>
+
+<div class="quiz-container">
+
+    <div class="page-heading">
+        <h2><%= quiz.title %></h2>
+        <p><%= quiz.category %> · <%= quiz.totalMarks %> marks</p>
+    </div>
+
+    <div class="form-box">
+        <h2>Add Question</h2>
+        <form action="/questions" method="POST">
+            <input type="hidden" name="quizId" value="<%= quiz._id %>">
+            <textarea name="question" placeholder="Question" required></textarea>
+            <div class="option-grid">
+                <input type="text" name="optionA" placeholder="Option A" required>
+                <input type="text" name="optionB" placeholder="Option B" required>
+                <input type="text" name="optionC" placeholder="Option C" required>
+                <input type="text" name="optionD" placeholder="Option D" required>
+            </div>
+            <select name="correctAnswer" required>
+                <option value="">Correct answer</option>
+                <option value="A">Option A</option>
+                <option value="B">Option B</option>
+                <option value="C">Option C</option>
+                <option value="D">Option D</option>
+            </select>
+            <button type="submit">Add Question</button>
+        </form>
+    </div>
+
+    <% if (!questions.length) { %>
+        <div class="empty-state">Add at least one question before attempting this quiz.</div>
+    <% } else { %>
+        <form action="/submit" method="POST">
+            <input type="hidden" name="quizId" value="<%= quiz._id %>">
+            <input type="text" name="studentName" placeholder="Enter Your Name" required>
+
+            <% questions.forEach((q, index) => { %>
+
+                <div class="question-card">
+
+                    <h3><%= index + 1 %>. <%= q.question %></h3>
+
+                    <label>
+                        <input type="radio" name="answers[<%= q._id %>]" value="A" required>
+                        <span><%= q.optionA %></span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="answers[<%= q._id %>]" value="B">
+                        <span><%= q.optionB %></span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="answers[<%= q._id %>]" value="C">
+                        <span><%= q.optionC %></span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="answers[<%= q._id %>]" value="D">
+                        <span><%= q.optionD %></span>
+                    </label>
+
+                </div>
+
+            <% }) %>
+
+            <button type="submit">Submit Quiz</button>
+
+        </form>
+    <% } %>
+
+</div>
+
+</body>
+</html>

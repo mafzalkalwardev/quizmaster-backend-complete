@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Result</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="result-box">
+
+    <h1>Quiz Submitted</h1>
+
+    <h2><%= result.studentName %></h2>
+
+    <p><strong>Quiz:</strong> <%= result.quizTitle %></p>
+
+    <p><strong>Score:</strong> <%= result.score %>/<%= result.totalQuestions %></p>
+
+    <p><strong>Percentage:</strong> <%= result.percentage %>%</p>
+
+    <a class="btn" href="/quizzes">Go Back</a>
+
+</div>
+
+</body>
+</html>

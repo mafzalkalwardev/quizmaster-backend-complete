@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaderboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h1>Leaderboard</h1>
+    <div>
+        <a href="/quizzes">Home</a>
+    </div>
+</div>
+
+<div class="leaderboard-container">
+
+    <table>
+
+        <tr>
+            <th>Student</th>
+            <th>Quiz</th>
+            <th>Score</th>
+            <th>Percentage</th>
+        </tr>
+
+        <% leaders.forEach(l => { %>
+
+            <tr>
+                <td><%= l.studentName %></td>
+                <td><%= l.quizTitle %></td>
+                <td><%= l.score %>/<%= l.totalQuestions || '-' %></td>
+                <td><%= l.percentage %>%</td>
+            </tr>
+
+        <% }) %>
+
+    </table>
+
+</div>
+
+</body>
+</html>

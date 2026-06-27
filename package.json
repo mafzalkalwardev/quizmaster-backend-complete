@@ -1,0 +1,18 @@
+{
+  "name": "quizmaster",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon --ignore logs.txt app.js",
+    "check-db": "node scripts/check-db.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
